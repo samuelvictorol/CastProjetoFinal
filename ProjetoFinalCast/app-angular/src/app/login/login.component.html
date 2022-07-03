@@ -1,0 +1,11 @@
+<div class="login">
+  <div class="login-wrapper container">
+    <img src="assets/logo.png" alt="logo">
+    <h1>Logar</h1>
+    <input type="text" placeholder="Username" (click)="textBtn()" [(ngModel)]="user">
+    <input type="password" placeholder="Senha" (click)="textBtn()" [(ngModel)]="password">
+    <button (click)="Passageiros()">{{ loginbtn_text}}</button>
+    <p>Ainda não é membro? <a routerLink="register">Registre-se</a></p>
+    <img *ngIf="loginLoad" src="assets/logo.png" alt="logo" class="spinner">
+  </div>
+</div>

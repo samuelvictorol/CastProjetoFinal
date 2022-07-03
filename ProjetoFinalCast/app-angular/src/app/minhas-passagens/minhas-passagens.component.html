@@ -1,0 +1,88 @@
+<div class="user">
+  <div class="user-wrapper container">
+    <img *ngIf="load" src="assets/logo.png" alt="logo" class="spinner">
+    <div class="logo-h1">
+      <img src="assets/logo.png" alt="logo" />
+      <h1>Passagens Aéreas</h1>
+    </div>
+    <button
+      class="btn-header"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Logout
+    </button>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Deseja Realmente Sair?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-cancel"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              (click)="logout()"
+              class="btn btn-blue"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="busca-usuario container">
+    <a (click)="buscarPassagens()" class="minhas-passagens">Buscar Passagens</a>
+    <p class="usuario">Bem Vindo, {{ currentUser.nomeCompleto }}</p>
+  </div>
+
+  <div class="titles container">
+    <h2>Minhas Passagens</h2>
+    <div class="line"></div>
+  </div>
+  <div class="minhas-passagensList container"></div>
+  <div class="cards container">
+    <div class="cards-wrapper" *ngFor="let p of minhasPassagensLista"  >
+      <!-- *ngFor="let p of minhasPassagensLista$|async" -->
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ p.origem }} → {{ p.destino }}</h5>
+          <hr>
+          <h5 class="card-title">Valor: {{ p.valor | currency:'BRL'}} </h5>
+          <h5 class="card-title">Empresa: {{ p.empresa }} </h5>
+          <h5 class="card-title">Ida: {{ p.dataIda | date}} </h5>
+          <h5 class="card-title"> Volta: {{ p.dataVolta | date}} </h5>
+          <hr>
+          <p class="card-text">
+            Responsável: {{ p.nomePassageiro }}
+            <br>
+            Usuario: {{ currentUser.usuario }}
+          </p>
+          <a (click)="cancelarPassagem(p.id)" class="btn cancelar btn-warning">Cancelar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

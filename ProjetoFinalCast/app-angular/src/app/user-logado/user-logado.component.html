@@ -1,0 +1,131 @@
+<div class="user">
+  <div class="detalhes" *ngIf="showDetalhes" >
+    <!-- -->
+    <div class="detalhes-wrapper">
+      <img
+        class="detalhes-img"
+        src="{{ detalhesLugar.url }}"
+        alt="img-detalhes"
+      />
+      <p class="detalhe-nomeLugar"><i>{{ detalhesLugar.nomeLugar }}</i></p>
+      <p class="detalhe-valor">R${{ detalhesLugar.valorDia }}</p>
+      <hr>
+      <p *ngIf="selecionarData" class="detalhe-data">Selecione as datas de ida e volta</p>
+      <p class="detalhe-data">Ida:<br>{{ dateIda | date }}</p>
+      <p class="detalhe-data">Volta:<br> {{ dateVolta | date }}</p>
+    </div>
+    <button class="detalhe-btn" (click)="reservarPassagem()">{{ btnReserva_text }}</button>
+  </div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-header">
+    <h5 id="offcanvasRightLabel">Meu Perfil</h5>
+    <button type="button" class="btn-close close-offcanvas text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form class="form-edit">
+      <input class="form-input" placeholder="{{currentUser.nomeCompleto}}" >
+      <input class="form-input" placeholder="{{ currentUser.cpf}}">
+      <input class="form-input" placeholder="{{currentUser.endereco}}">
+      <input class="form-input" placeholder="{{ currentUser.email}}">
+      <input class="form-input" placeholder="{{ currentUser.telefone }}">
+      <button class="btn-form-edit">Atualizar dados</button>
+    </form>
+  </div>
+</div>
+
+  <div class="user-wrapper container">
+    <div class="logo-h1">
+      <img src="assets/logo.png" alt="logo" />
+      <h1>Passagens Aéreas</h1>
+    </div>
+    <button
+      class="btn-header"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Logout
+    </button>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Logout</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Deseja Realmente Sair?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-cancel"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              (click)="logout()"
+              class="btn btn-blue"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Sair
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="busca-usuario container">
+    <a (click)="minhasPassagens()" class="minhas-passagens">Minhas Passagens</a>
+    <a class="usuario"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Bem Vindo, {{ currentUser.nomeCompleto }}</a>
+  </div>
+  <nav class="nav-wrapper container">
+    <p class="label-nav">Origem:</p>
+    <p class="var-nav">Brasilia (BSB)</p>
+    <p class="label-nav2">Destino:</p>
+    <select
+      name="lugarId"
+      [(ngModel)]="lugarNomeSelect"
+      (ngModelChange)="select()"
+    >
+      <option [ngValue]="todosLugares">{{ todosLugaresString }}</option>
+      <option *ngFor="let l of lugaresLista$ | async" [ngValue]="l.nomeLugar">
+        {{ l.nomeLugar }}
+      </option>
+    </select>
+    <p class="label-nav3">Ida:</p>
+    <input (click)="data()" type="date"class="date date-ida" name="dateIdA" [(ngModel)]="dateIda">
+    <p class="label-nav4">Volta:</p>
+    <input (click)="data" type="date"class="date date-volta" name="dateVolta" [(ngModel)]="dateVolta">
+  </nav>
+  <div class="titles container">
+    <h2>Local</h2>
+    <h2>Preço</h2>
+    <h2>Detalhes</h2>
+    <div class="line"></div>
+  </div>
+
+  <div class="lugares container">
+    <div class="lugares-wrapper" *ngFor="let l of lugaresListaFiltrada">
+      <img class="lugar-img" src="{{ l.url }}" alt="RJ" />
+      <p class="lugar-viagem">(BSB) → ({{ l.nomeLugar }})</p>
+      <p class="valor-viagem">{{ l.valorDia | currency:'BRL'}}</p>
+      <button class="btn-detalhes-viagem" (click)="detalhes(l)">Detalhes</button>
+    </div>
+
+  </div>
+
+
+</div>

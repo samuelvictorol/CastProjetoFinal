@@ -1,0 +1,23 @@
+<div class="register">
+  <div class="toaster" *ngIf="registerSuccess">
+    <p class="toaster-p">Registrado com Sucesso</p>
+  </div>
+  <form  [formGroup]="formulario" (ngSubmit)="EnviarFormulario()" class="register-wrapper container">
+    <div class="logo-h1">
+      <img src="assets/logo.png" alt="logo">
+      <h1 >Registrar</h1>
+    </div>
+    <input formControlName="NomeCompleto" type="text" placeholder="Nome Completo" value="NomeCompleto">
+    <input formControlName="CPF" type="text" placeholder="CPF">
+    <input formControlName="Nascimento" type="date" id="data">
+    <input formControlName="Endereco" type="address" placeholder="Endereco">
+    <input formControlName="Email" type="email" placeholder="Email">
+    <input formControlName="Telefone" type="tel" placeholder="Telefone">
+    <input formControlName="usuario" type="text" placeholder="Usuario">
+    <input formControlName="Senha" type="password" placeholder="Senha">
+    <button type="submit">{{ btnRegistrar_text }}</button>
+    <p>Ja possui cadastro? <a class="p-link" (click)="Logar()">Fazer login</a></p>
+    </form>
+</div>
+
+

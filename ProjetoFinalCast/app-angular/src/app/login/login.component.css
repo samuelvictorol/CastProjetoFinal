@@ -1,0 +1,101 @@
+
+.login{
+  width: 100%;
+  height: 100vh;
+}
+
+.alert{
+  width: 25%;
+}
+
+.login-wrapper{
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
+  align-items: center;
+  justify-content: center;
+}
+
+img{
+  width: 6.6em;
+  padding: .7rem;
+}
+
+h1{
+  color: #87CAB9;
+  font-family: 'Quicksand', sans-serif;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+input{
+  margin: 1rem 0;
+  background-color: #A2C4C9;
+  color: #0d0d0d;
+  width: 25%;
+  height: 3rem;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  padding-left: .5rem;
+  font-weight: bolder;
+}
+
+input:focus{
+  outline: none;
+  padding-left: .5rem;
+  font-size: 1.3rem;
+}
+
+input::placeholder{
+  color: rgb(255, 255, 255);
+  padding-left: .5rem;
+  font-size: 1.2rem;
+}
+
+button{
+  margin: 1rem 0;
+  background-color: #87CAB9;
+  color: #fff;
+  width: 25%;
+  height: 3rem;
+  border-radius: 10px;
+  border: none;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.2rem;
+  transition: all 1s;
+  font-weight: bolder;
+}
+
+button:hover{
+  font-size: 1.35rem;
+  background-color: #22a6b3;
+  color: #fff;
+  -webkit-box-shadow: 5px 5px 25px -6px #000000;
+  box-shadow: 5px 5px 25px -6px #000000;
+}
+
+p{
+  margin-top: 2.5rem;
+  color: rgb(109, 109, 109);
+  font-size: 1.01rem;
+}
+
+a{
+  color: #41bed1;
+}
+
+.spinner{
+  margin-top: 1.1rem;
+  border-left-color: #F2A0A0;
+  border-radius: 100%;
+  width: 70px;
+  height: 100%;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
